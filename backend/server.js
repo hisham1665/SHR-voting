@@ -28,12 +28,15 @@ app.use("/api/vote/",Voterouter)
 app.use("/api/assign/",Assignrouter )
 app.use("/api/winner/",Winnerrouter)
 if(process.env.NODE_ENV === "production"){
-  app.use(express.static(path.join(__dirname, "frontend/dist")))
+  // Fix the path to look for dist in the correct location
+  const frontendPath = path.join(__dirname, "../frontend/dist");
+  app.use(express.static(frontendPath));
   console.log("Running in production. Serving frontend...");
+  console.log("Frontend path:", frontendPath); // Add this for debugging
   
   // Handle React routes (everything that doesn't start with /api)
-  app.get(/^(?!\/api).*/, (req, res) => {  // ✅ Fixed: exclude /api routes
-    res.sendFile(path.resolve(__dirname, "frontend" , "dist" , "index.html"))
+  app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"))
   })
 }
 
