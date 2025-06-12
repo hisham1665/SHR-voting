@@ -13,6 +13,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "dev": "nodemon backend/server.js"
   },
   "keywords": [],
