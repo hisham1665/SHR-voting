@@ -30,7 +30,9 @@ app.use("/api/winner/",Winnerrouter)
 if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "frontend/dist")))
   console.log("Running in production. Serving frontend...");
-  app.get(/.*/, (req, res) => {  // ✅ Fixed: regex pattern
+  
+  // Handle React routes (everything that doesn't start with /api)
+  app.get(/^(?!\/api).*/, (req, res) => {  // ✅ Fixed: exclude /api routes
     res.sendFile(path.resolve(__dirname, "frontend" , "dist" , "index.html"))
   })
 }
