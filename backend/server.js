@@ -30,7 +30,7 @@ app.use("/api/winner/",Winnerrouter)
 if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "frontend/dist")))
   console.log("Running in production. Serving frontend...");
-  app.get("/:path*", (req, res) => {  // ✅ Fixed: named parameter
+  app.get(/.*/, (req, res) => {  // ✅ Fixed: regex pattern
     res.sendFile(path.resolve(__dirname, "frontend" , "dist" , "index.html"))
   })
 }
