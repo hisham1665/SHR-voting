@@ -19,6 +19,7 @@ app.use(cors({
     origin: "http://localhost:5173",  // Your React app URL
     credentials: true,                // If you plan to use cookies or authentication
   }));
+app.use(express.json())
 const __dirname = path.resolve();
 app.use(express.json())
 app.use("/api/user/", Userroutes)
