@@ -14,8 +14,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node backend/server.js",
-    "build": "cd frontend && npm install && npm run build",
-    "dev": "nodemon backend/server.js"
+    "build": "cd frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
